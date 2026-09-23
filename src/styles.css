@@ -19,6 +19,9 @@
  */
 
 @theme inline {
+  --font-sans: "Manrope", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -59,36 +62,42 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-surface-bright: var(--surface-bright);
+  --color-glow: var(--glow);
+  --shadow-neon-cyan: 0 0 28px color-mix(in oklab, var(--primary) 26%, transparent);
+  --shadow-neon-purple: 0 0 28px color-mix(in oklab, var(--accent) 25%, transparent);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.25rem;
+  --background: oklch(0.135 0.006 285);
+  --foreground: oklch(0.95 0.012 245);
+  --card: oklch(0.18 0.018 272 / 78%);
+  --card-foreground: oklch(0.95 0.012 245);
+  --popover: oklch(0.16 0.014 275);
+  --popover-foreground: oklch(0.95 0.012 245);
+  --primary: oklch(0.78 0.16 207);
+  --primary-foreground: oklch(0.13 0.018 240);
+  --secondary: oklch(0.22 0.03 274);
+  --secondary-foreground: oklch(0.92 0.015 245);
+  --muted: oklch(0.23 0.018 275);
+  --muted-foreground: oklch(0.7 0.025 255);
+  --accent: oklch(0.7 0.2 302);
+  --accent-foreground: oklch(0.98 0.01 250);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.35 0.035 270 / 65%);
+  --input: oklch(0.29 0.03 270);
+  --ring: oklch(0.78 0.16 207);
+  --surface-bright: oklch(0.25 0.04 268);
+  --glow: oklch(0.78 0.16 207);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar: var(--background);
+  --sidebar-foreground: var(--foreground);
   --sidebar-primary: oklch(0.208 0.042 265.755);
   --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
   --sidebar-accent: oklch(0.968 0.007 247.896);
@@ -133,6 +142,7 @@
 }
 
 @layer base {
+  html { scroll-behavior: smooth; }
   * {
     border-color: var(--color-border);
   }
@@ -140,5 +150,84 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+    min-width: 320px;
   }
+  button, a { cursor: pointer; }
+}
+
+@utility text-gradient {
+  background: linear-gradient(100deg, var(--primary), var(--accent));
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-accent {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+@utility glass-card {
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--card) 82%, transparent);
+  backdrop-filter: blur(18px);
+  transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+  &:hover, &:focus-visible {
+    border-color: color-mix(in oklab, var(--primary) 60%, transparent);
+    box-shadow: 0 0 28px color-mix(in oklab, var(--primary) 12%, transparent);
+    transform: translateY(-3px);
+    outline: none;
+  }
+}
+
+@utility project-card {
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--card) 84%, transparent);
+  transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+  &:hover, &:focus-visible {
+    border-color: color-mix(in oklab, var(--primary) 65%, transparent);
+    box-shadow: 0 0 35px color-mix(in oklab, var(--primary) 13%, transparent);
+    transform: translateY(-4px);
+    outline: none;
+  }
+}
+
+.hero-grid {
+  background-image: linear-gradient(color-mix(in oklab, var(--primary) 7%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--primary) 7%, transparent) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+
+.profile-glow { animation: profile-pulse 3.8s ease-in-out infinite; }
+.profile-glow::before { content: ""; position: absolute; inset: -1px; z-index: -1; background: linear-gradient(135deg, var(--primary), var(--accent), var(--primary)); filter: blur(18px); opacity: .42; }
+.typing-name { animation: typing 1.4s steps(10, end) .15s both, caret .7s step-end infinite; }
+.particle { position: absolute; left: calc((var(--particle-index) * 47) % 97 * 1%); top: calc((var(--particle-index) * 31) % 88 * 1%); width: 3px; height: 3px; border-radius: 50%; background: var(--primary); opacity: .32; animation: float-particle calc(5s + (var(--particle-index) % 6) * 1s) ease-in-out infinite alternate; }
+.skill-card { opacity: 0; animation: skill-enter .5s ease forwards; }
+.skill-progress { width: 0; animation: fill-skill 1.2s ease .5s forwards; }
+.quiz-visual { background-image: linear-gradient(color-mix(in oklab, var(--accent) 10%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--primary) 10%, transparent) 1px, transparent 1px); background-size: 28px 28px; }
+.timeline { position: relative; }
+.timeline::before { content: ""; position: absolute; left: 20px; top: 20px; bottom: 40px; width: 1px; background: linear-gradient(var(--primary), var(--accent), transparent); }
+.timeline-item { position: relative; }
+.timeline-icon { position: absolute; left: 0; top: 0; transition: box-shadow 200ms ease; }
+.timeline-item:hover .timeline-icon { box-shadow: 0 0 22px color-mix(in oklab, var(--primary) 28%, transparent); }
+.chess-card { position: relative; transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease; }
+.chess-card::before { content: ""; position: absolute; inset: 0; background-image: conic-gradient(from 90deg, color-mix(in oklab, var(--primary) 5%, transparent) 90deg, transparent 0 180deg, color-mix(in oklab, var(--primary) 5%, transparent) 0 270deg, transparent 0); background-size: 64px 64px; mask-image: linear-gradient(90deg, transparent 15%, black); }
+.chess-card:hover { border-color: color-mix(in oklab, var(--primary) 65%, transparent); box-shadow: 0 0 36px color-mix(in oklab, var(--primary) 15%, transparent); transform: translateY(-3px); }
+.chess-knight { filter: drop-shadow(0 0 12px color-mix(in oklab, var(--primary) 65%, transparent)); }
+.certificate-card, .contact-card, .resume-card { transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease; }
+.certificate-card:hover, .contact-card:hover, .resume-card:hover { border-color: color-mix(in oklab, var(--primary) 60%, transparent); box-shadow: 0 0 28px color-mix(in oklab, var(--primary) 11%, transparent); transform: translateY(-3px); }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+@keyframes typing { from { width: 0; } to { width: 10ch; } }
+@keyframes caret { 50% { border-color: transparent; } }
+@keyframes profile-pulse { 0%, 100% { box-shadow: 0 0 28px color-mix(in oklab, var(--primary) 20%, transparent); } 50% { box-shadow: 0 0 52px color-mix(in oklab, var(--accent) 24%, transparent); } }
+@keyframes float-particle { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(12px, -24px, 0); opacity: .7; } }
+@keyframes skill-enter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fill-skill { to { width: var(--skill-width); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  .skill-progress { width: var(--skill-width); }
 }
