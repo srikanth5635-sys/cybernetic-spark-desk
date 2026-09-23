@@ -26,12 +26,13 @@ import {
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 
-import profileAsset from "@/assets/srikanth-profile.jpeg.asset.json";
+import profileAsset from "@/assets/srikanth-hero.jpeg.asset.json";
 import pongWinAsset from "@/assets/pong-game-win.jpeg.asset.json";
 import pongPlayAsset from "@/assets/pong-game-play.jpeg.asset.json";
 import cCertificateAsset from "@/assets/introduction-to-c.jpeg.asset.json";
 import socialCertificateAsset from "@/assets/social-media-ai.jpeg.asset.json";
 import resumeAsset from "@/assets/srikanth-resume.pdf.asset.json";
+import quizSrsAsset from "@/assets/quiz-master-srs.pdf.asset.json";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -279,16 +280,15 @@ function Portfolio() {
           <button onClick={() => setProject("quiz")} className="project-card group overflow-hidden text-left">
             <div className="quiz-visual relative grid aspect-[16/8] place-items-center overflow-hidden bg-muted">
               <div className="absolute inset-6 border border-primary/20" />
-              <div className="relative grid size-24 place-items-center border border-accent/50 bg-card/80 shadow-neon-purple">
-                <span className="font-mono text-5xl font-bold text-accent">?</span>
-              </div>
-              <span className="absolute right-4 top-4 grid size-9 place-items-center bg-background/80 text-accent backdrop-blur"><ArrowUpRight /></span>
+              <SrsCover className="absolute w-32 -rotate-6 opacity-35 blur-[1.5px] sm:w-40" />
+              <SrsCover className="relative w-36 rotate-2 shadow-neon-purple sm:w-44" />
+              <span className="absolute right-4 top-4 z-10 grid size-9 place-items-center bg-background/80 text-accent backdrop-blur"><ArrowUpRight /></span>
             </div>
             <div className="p-6">
               <p className="font-mono text-xs uppercase text-accent">02 · Software Engineering</p>
-              <h3 className="mt-3 font-display text-2xl font-bold">Quiz Management System</h3>
-              <p className="mt-3 line-clamp-2 leading-7 text-muted-foreground">Requirement analysis, system design, and documentation for quiz administration and score management.</p>
-              <div className="mt-5 flex flex-wrap gap-2"><Tag>C</Tag><Tag>Requirements</Tag><Tag>Teamwork</Tag></div>
+              <h3 className="mt-3 font-display text-2xl font-bold">Quiz Master</h3>
+              <p className="mt-3 line-clamp-2 leading-7 text-muted-foreground">C-language console quiz game with automatic scoring, specified end-to-end in a full Software Requirements Specification.</p>
+              <div className="mt-5 flex flex-wrap gap-2"><Tag>C</Tag><Tag>SRS Document</Tag><Tag>Teamwork</Tag></div>
             </div>
           </button>
         </div>
@@ -368,6 +368,18 @@ function Portfolio() {
   );
 }
 
+function SrsCover({ className = "" }: { className?: string }) {
+  return (
+    <div className={`srs-cover flex flex-col items-center justify-center gap-1 px-4 py-6 text-center ${className}`}>
+      <p className="text-[11px] font-bold leading-tight sm:text-xs">Software Requirements Specification</p>
+      <p className="text-[9px] italic sm:text-[10px]">for</p>
+      <p className="text-base font-bold sm:text-lg">Quiz Master</p>
+      <p className="mt-2 max-w-[88%] text-[8px] italic leading-snug opacity-70 sm:text-[9px]">A C Language Based Quiz Game with Automatic Scoring</p>
+      <p className="mt-3 text-[8px] font-bold uppercase tracking-wide opacity-80 sm:text-[9px]">Karthick K · Srikanth S · Vasanth P</p>
+    </div>
+  );
+}
+
 function Particles() {
   return <div className="pointer-events-none absolute inset-0" aria-hidden="true">{Array.from({ length: 18 }, (_, index) => <i key={index} className="particle" style={{ "--particle-index": index } as React.CSSProperties} />)}</div>;
 }
@@ -402,5 +414,5 @@ function ContactCard({ href, icon, label, value, external = false }: { href: str
 
 function ProjectDialog({ project, onOpenChange }: { project: ProjectKey; onOpenChange: (open: boolean) => void }) {
   const pong = project === "pong";
-  return <Dialog open={project !== null} onOpenChange={onOpenChange}><DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto border-primary/30 bg-background/95 p-0 backdrop-blur-xl sm:rounded-sm"><DialogHeader className="sr-only"><DialogTitle>{pong ? "Pong Game 2" : "Quiz Management System"}</DialogTitle><DialogDescription>Project details</DialogDescription></DialogHeader>{pong ? <><div className="grid gap-1 bg-border sm:grid-cols-2"><img src={pongWinAsset.url} alt="Pong win screen" className="aspect-video h-full w-full object-cover" /><img src={pongPlayAsset.url} alt="Pong gameplay screen" className="aspect-video h-full w-full object-cover" /></div><div className="p-6 sm:p-8"><p className="font-mono text-xs uppercase text-primary">MIT App Inventor · Android</p><h3 className="mt-3 font-display text-3xl font-bold">Pong Game 2</h3><p className="mt-4 max-w-3xl leading-7 text-muted-foreground">Developed an Android-based Pong game featuring interactive gameplay, score tracking, and user-friendly controls. Applied event-driven programming concepts and mobile UI design principles to create an engaging gaming experience.</p><div className="mt-6 grid gap-3 sm:grid-cols-2">{["Interactive gameplay", "Score tracking", "Mobile-friendly controls", "Android application"].map((item) => <div key={item} className="flex items-center gap-3 border border-border bg-card p-3 text-sm"><Check className="size-4 text-primary" />{item}</div>)}</div><Button disabled className="mt-7 rounded-sm">Download APK (Coming Soon)</Button></div></> : <div className="p-7 sm:p-10"><div className="mb-8 grid size-20 place-items-center border border-accent/50 bg-accent/10 font-mono text-4xl font-bold text-accent">?</div><p className="font-mono text-xs uppercase text-accent">Software Engineering</p><h3 className="mt-3 font-display text-3xl font-bold">Quiz Management System</h3><p className="mt-4 leading-7 text-muted-foreground">Contributed to the development and documentation of a Quiz Management System. Participated in requirement analysis, system design, and documentation for quiz administration and score management.</p><div className="mt-7 flex flex-wrap gap-2">{["C Programming", "Software Requirements Engineering", "Documentation", "Team Collaboration"].map((item) => <Tag key={item}>{item}</Tag>)}</div></div>}</DialogContent></Dialog>;
+  return <Dialog open={project !== null} onOpenChange={onOpenChange}><DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto border-primary/30 bg-background/95 p-0 backdrop-blur-xl sm:rounded-sm"><DialogHeader className="sr-only"><DialogTitle>{pong ? "Pong Game 2" : "Quiz Master"}</DialogTitle><DialogDescription>Project details</DialogDescription></DialogHeader>{pong ? <><div className="grid gap-1 bg-border sm:grid-cols-2"><img src={pongWinAsset.url} alt="Pong win screen" className="aspect-video h-full w-full object-cover" /><img src={pongPlayAsset.url} alt="Pong gameplay screen" className="aspect-video h-full w-full object-cover" /></div><div className="p-6 sm:p-8"><p className="font-mono text-xs uppercase text-primary">MIT App Inventor · Android</p><h3 className="mt-3 font-display text-3xl font-bold">Pong Game 2</h3><p className="mt-4 max-w-3xl leading-7 text-muted-foreground">Developed an Android-based Pong game featuring interactive gameplay, score tracking, and user-friendly controls. Applied event-driven programming concepts and mobile UI design principles to create an engaging gaming experience.</p><div className="mt-6 grid gap-3 sm:grid-cols-2">{["Interactive gameplay", "Score tracking", "Mobile-friendly controls", "Android application"].map((item) => <div key={item} className="flex items-center gap-3 border border-border bg-card p-3 text-sm"><Check className="size-4 text-primary" />{item}</div>)}</div><Button disabled className="mt-7 rounded-sm">Download APK (Coming Soon)</Button></div></> : <div className="p-7 sm:p-10"><div className="mb-8 flex flex-col gap-7 sm:flex-row sm:items-center"><SrsCover className="w-32 shrink-0 -rotate-2 sm:w-40" /><div><p className="font-mono text-xs uppercase text-accent">Software Engineering · C</p><h3 className="mt-3 font-display text-3xl font-bold">Quiz Master</h3><p className="mt-2 font-mono text-[10px] uppercase text-muted-foreground">Team · Karthick K · Srikanth S · Vasanth P</p></div></div><p className="leading-7 text-muted-foreground">Co-developed Quiz Master, a C-language console quiz game with automatic scoring, and authored its complete Software Requirements Specification — defining the built-in question bank, answer validation, scoring rules, and result summaries.</p><div className="mt-7 grid gap-3 sm:grid-cols-2">{["Built-in question bank", "Answer input & validation", "Automatic scoring", "Result summary & replay"].map((item) => <div key={item} className="flex items-center gap-3 border border-border bg-card p-3 text-sm"><Check className="size-4 text-accent" />{item}</div>)}</div><div className="mt-7 flex flex-wrap gap-2">{["C Programming", "SRS Documentation", "Requirements Engineering", "Team Collaboration"].map((item) => <Tag key={item}>{item}</Tag>)}</div><div className="mt-8 flex flex-wrap gap-3"><Button asChild className="rounded-sm shadow-neon-cyan"><a href={quizSrsAsset.url} target="_blank" rel="noreferrer">View SRS <ExternalLink /></a></Button><Button asChild variant="outline" className="rounded-sm border-primary/40 bg-transparent"><a href={quizSrsAsset.url} download="Quiz_Master_SRS.pdf">Download SRS <Download /></a></Button></div></div>}</DialogContent></Dialog>;
 }
