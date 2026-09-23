@@ -26,12 +26,13 @@ import {
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 
-import profileAsset from "@/assets/srikanth-profile.jpeg.asset.json";
+import profileAsset from "@/assets/srikanth-hero.jpeg.asset.json";
 import pongWinAsset from "@/assets/pong-game-win.jpeg.asset.json";
 import pongPlayAsset from "@/assets/pong-game-play.jpeg.asset.json";
 import cCertificateAsset from "@/assets/introduction-to-c.jpeg.asset.json";
 import socialCertificateAsset from "@/assets/social-media-ai.jpeg.asset.json";
 import resumeAsset from "@/assets/srikanth-resume.pdf.asset.json";
+import quizSrsAsset from "@/assets/quiz-master-srs.pdf.asset.json";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -279,16 +280,15 @@ function Portfolio() {
           <button onClick={() => setProject("quiz")} className="project-card group overflow-hidden text-left">
             <div className="quiz-visual relative grid aspect-[16/8] place-items-center overflow-hidden bg-muted">
               <div className="absolute inset-6 border border-primary/20" />
-              <div className="relative grid size-24 place-items-center border border-accent/50 bg-card/80 shadow-neon-purple">
-                <span className="font-mono text-5xl font-bold text-accent">?</span>
-              </div>
-              <span className="absolute right-4 top-4 grid size-9 place-items-center bg-background/80 text-accent backdrop-blur"><ArrowUpRight /></span>
+              <SrsCover className="absolute w-32 -rotate-6 opacity-35 blur-[1.5px] sm:w-40" />
+              <SrsCover className="relative w-36 rotate-2 shadow-neon-purple sm:w-44" />
+              <span className="absolute right-4 top-4 z-10 grid size-9 place-items-center bg-background/80 text-accent backdrop-blur"><ArrowUpRight /></span>
             </div>
             <div className="p-6">
               <p className="font-mono text-xs uppercase text-accent">02 · Software Engineering</p>
-              <h3 className="mt-3 font-display text-2xl font-bold">Quiz Management System</h3>
-              <p className="mt-3 line-clamp-2 leading-7 text-muted-foreground">Requirement analysis, system design, and documentation for quiz administration and score management.</p>
-              <div className="mt-5 flex flex-wrap gap-2"><Tag>C</Tag><Tag>Requirements</Tag><Tag>Teamwork</Tag></div>
+              <h3 className="mt-3 font-display text-2xl font-bold">Quiz Master</h3>
+              <p className="mt-3 line-clamp-2 leading-7 text-muted-foreground">C-language console quiz game with automatic scoring, specified end-to-end in a full Software Requirements Specification.</p>
+              <div className="mt-5 flex flex-wrap gap-2"><Tag>C</Tag><Tag>SRS Document</Tag><Tag>Teamwork</Tag></div>
             </div>
           </button>
         </div>
@@ -365,6 +365,18 @@ function Portfolio() {
 
       <ProjectDialog project={project} onOpenChange={(open) => !open && setProject(null)} />
     </main>
+  );
+}
+
+function SrsCover({ className = "" }: { className?: string }) {
+  return (
+    <div className={`srs-cover flex flex-col items-center justify-center gap-1 px-4 py-6 text-center ${className}`}>
+      <p className="text-[11px] font-bold leading-tight sm:text-xs">Software Requirements Specification</p>
+      <p className="text-[9px] italic sm:text-[10px]">for</p>
+      <p className="text-base font-bold sm:text-lg">Quiz Master</p>
+      <p className="mt-2 max-w-[88%] text-[8px] italic leading-snug opacity-70 sm:text-[9px]">A C Language Based Quiz Game with Automatic Scoring</p>
+      <p className="mt-3 text-[8px] font-bold uppercase tracking-wide opacity-80 sm:text-[9px]">Karthick K · Srikanth S · Vasanth P</p>
+    </div>
   );
 }
 
