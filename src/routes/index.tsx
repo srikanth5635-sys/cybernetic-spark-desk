@@ -3,6 +3,7 @@ import {
   ArrowDown,
   ArrowUpRight,
   Award,
+  BarChart3,
   BadgeCheck,
   BookOpen,
   BriefcaseBusiness,
@@ -31,8 +32,12 @@ import pongWinAsset from "@/assets/pong-game-win.jpeg.asset.json";
 import pongPlayAsset from "@/assets/pong-game-play.jpeg.asset.json";
 import cCertificateAsset from "@/assets/introduction-to-c.jpeg.asset.json";
 import socialCertificateAsset from "@/assets/social-media-ai.jpeg.asset.json";
-import resumeAsset from "@/assets/srikanth-resume.pdf.asset.json";
+import resumeAsset from "@/assets/srikanth-updated-resume.pdf.asset.json";
 import quizSrsAsset from "@/assets/quiz-master-srs.pdf.asset.json";
+import retailPbixAsset from "@/assets/online-retail-analysis.pbix.asset.json";
+import pythonCertificateAsset from "@/assets/nptel-python-certificate.png.asset.json";
+import cppCertificateAsset from "@/assets/sololearn-cpp-certificate.png.asset.json";
+import forageCertificateAsset from "@/assets/tata-forage-certificate.png.asset.json";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -69,6 +74,7 @@ const navItems = [
   ["Skills", "skills"],
   ["Projects", "projects"],
   ["Achievements", "achievements"],
+  ["Experience", "experience"],
   ["Chess", "chess"],
   ["Certificates", "certifications"],
   ["Resume", "resume"],
@@ -76,16 +82,23 @@ const navItems = [
 ] as const;
 
 const skills = [
-  { name: "C", level: 82, group: "Programming" },
-  { name: "C++", level: 76, group: "Programming" },
-  { name: "Java", level: 70, group: "Programming" },
-  { name: "Python", level: 74, group: "Programming" },
-  { name: "Data Structures & Algorithms", level: 72, group: "Core concept" },
-  { name: "Git", level: 75, group: "Tool" },
-  { name: "Canva", level: 88, group: "Tool" },
+  { name: "C", group: "Programming" },
+  { name: "C++", group: "Programming" },
+  { name: "Java", group: "Programming" },
+  { name: "Python", group: "Programming" },
+  { name: "Data Structures & Algorithms", group: "Core concept" },
+  { name: "HTML", group: "Web technologies" },
+  { name: "CSS", group: "Web technologies" },
+  { name: "JavaScript", group: "Web technologies" },
+  { name: "Microsoft Power BI", group: "Data analytics" },
+  { name: "Power Query", group: "Data analytics" },
+  { name: "DAX", group: "Data analytics" },
+  { name: "Git", group: "Tool" },
+  { name: "Canva", group: "Tool" },
+  { name: "MIT App Inventor", group: "Tool" },
 ] as const;
 
-type ProjectKey = "pong" | "quiz" | null;
+type ProjectKey = "pong" | "quiz" | "retail" | null;
 
 function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -179,10 +192,10 @@ function Portfolio() {
               Persistent by Mind. <span className="text-gradient">Designer by Passion.</span> Engineer in Progress.
             </h2>
             <p className="mt-6 font-mono text-sm text-primary sm:text-base">
-              UI/UX Designer <span className="text-muted-foreground">•</span> CSE Student <span className="text-muted-foreground">•</span> Aspiring Software Engineer
+              Evolving UX/UI Designer <span className="text-muted-foreground">•</span> Aspiring Software Engineer
             </p>
             <p className="mt-7 max-w-2xl text-base leading-8 text-muted-foreground">
-              I’m Srikanth S, a Computer Science and Engineering student at Government College of Technology, Coimbatore. I create user-centered digital experiences, develop software solutions, and continuously learn new technologies.
+              Enthusiastic about creating user-centered digital experiences. Interested in exploring Artificial Intelligence, Machine Learning, and Deep Learning while developing my software engineering skills.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Button className="h-11 rounded-sm px-6 shadow-neon-cyan" onClick={() => scrollTo("projects")}>
@@ -246,7 +259,7 @@ function Portfolio() {
       <Section id="skills" number="02" eyebrow="Technical capability" title="Skills matrix">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {skills.map((skill, index) => (
-            <article key={skill.name} className="skill-card glass-card group p-5" style={{ animationDelay: `${index * 70}ms` }} tabIndex={0}>
+            <article key={skill.name} className="skill-card glass-card group p-5" style={{ animationDelay: `${index * 45}ms` }} tabIndex={0}>
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="font-mono text-[10px] uppercase text-muted-foreground">{skill.group}</p>
@@ -254,10 +267,6 @@ function Portfolio() {
                 </div>
                 <Code2 className="size-5 text-primary transition-transform group-hover:scale-110" />
               </div>
-              <div className="mt-6 h-1 overflow-hidden bg-muted" aria-label={`${skill.name} proficiency ${skill.level}%`}>
-                <div className="skill-progress h-full bg-gradient-accent" style={{ "--skill-width": `${skill.level}%` } as React.CSSProperties} />
-              </div>
-              <p className="mt-2 text-right font-mono text-[10px] text-muted-foreground">{skill.level}%</p>
             </article>
           ))}
         </div>
@@ -291,6 +300,25 @@ function Portfolio() {
               <div className="mt-5 flex flex-wrap gap-2"><Tag>C</Tag><Tag>SRS Document</Tag><Tag>Teamwork</Tag></div>
             </div>
           </button>
+          <button onClick={() => setProject("retail")} className="project-card group overflow-hidden text-left">
+            <div className="relative grid aspect-[16/8] content-center gap-3 overflow-hidden bg-secondary/35 p-5 sm:grid-cols-3 sm:p-7">
+              <div className="absolute inset-0 opacity-30 hero-grid" />
+              {["Monthly revenue", "Country analysis", "Customer insights"].map((label) => (
+                <div key={label} className="relative flex min-h-24 flex-col justify-between border border-primary/25 bg-background/70 p-3">
+                  <BarChart3 className="size-5 text-primary" />
+                  <span className="font-mono text-[9px] uppercase text-muted-foreground sm:text-[10px]">{label}</span>
+                </div>
+              ))}
+              <span className="absolute right-4 top-4 grid size-9 place-items-center bg-background/80 text-primary backdrop-blur"><ArrowUpRight /></span>
+              <span className="absolute bottom-2 left-5 font-mono text-[9px] uppercase text-muted-foreground sm:left-7">Dashboard preview area</span>
+            </div>
+            <div className="p-6">
+              <p className="font-mono text-xs uppercase text-primary">03 · Microsoft Power BI</p>
+              <h3 className="mt-3 font-display text-2xl font-bold">Online Retail Data Analysis</h3>
+              <p className="mt-3 line-clamp-2 leading-7 text-muted-foreground">Analysed an online retail dataset to identify business insights and sales trends.</p>
+              <div className="mt-5 flex flex-wrap gap-2"><Tag>Power BI</Tag><Tag>Power Query</Tag><Tag>DAX</Tag></div>
+            </div>
+          </button>
         </div>
       </Section>
 
@@ -302,7 +330,13 @@ function Portfolio() {
         </div>
       </Section>
 
-      <Section id="chess" number="05" eyebrow="Strategic practice" title="Chess arena">
+      <Section id="experience" number="05" eyebrow="Professional learning" title="Experience">
+        <div className="timeline mx-auto max-w-4xl">
+          <TimelineItem icon={<BriefcaseBusiness />} code="FORAGE · NOV 2026" title="Tata Group — Data Visualisation: Empowering Business with Effective Insights" detail="Forage Virtual Job Simulation · Completed a business data analysis and visualization simulation using Microsoft Power BI. Cleaned and transformed online retail data, analysed monthly revenue trends and top-performing countries and customers, created a global demand visualization, and prepared business insights to support decision-making." />
+        </div>
+      </Section>
+
+      <Section id="chess" number="06" eyebrow="Strategic practice" title="Chess arena">
         <a href="https://www.chess.com/member/nskjoker" target="_blank" rel="noreferrer" className="chess-card group block overflow-hidden border border-border bg-card/65 p-7 sm:p-9">
           <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
@@ -321,19 +355,22 @@ function Portfolio() {
         </a>
       </Section>
 
-      <Section id="certifications" number="06" eyebrow="Verified learning" title="Certifications">
-        <div className="grid gap-5 lg:grid-cols-2">
-          <Certificate image={cCertificateAsset.url} title="Introduction to C" />
-          <Certificate image={socialCertificateAsset.url} title="Social Media Marketing with AI" />
+      <Section id="certifications" number="07" eyebrow="Verified learning" title="Certifications">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <Certificate image={pythonCertificateAsset.url} title="The Joy of Computing Using Python" organization="NPTEL · IIT Madras" detail="97% · Top 5% Topper · July–October 2026" />
+          <Certificate image={cppCertificateAsset.url} title="Introduction to C++" organization="SoloLearn" detail="Issued November 2026" />
+          <Certificate image={forageCertificateAsset.url} title="Data Visualisation: Empowering Business with Effective Insights" organization="Tata Group · Forage" detail="Certificate of Completion · November 2026" />
+          <Certificate image={cCertificateAsset.url} title="Introduction to C" organization="SoloLearn" />
+          <Certificate image={socialCertificateAsset.url} title="Social Media Marketing with AI" organization="SoloLearn" />
         </div>
       </Section>
 
-      <Section id="resume" number="07" eyebrow="Professional profile" title="Resume archive">
+      <Section id="resume" number="08" eyebrow="Professional profile" title="Resume archive">
         <article className="resume-card grid overflow-hidden border border-primary/30 bg-card/65 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="border-b border-border bg-secondary/40 p-7 lg:border-b-0 lg:border-r sm:p-9">
             <div className="mb-9 flex items-center justify-between"><FileText className="size-8 text-primary" /><span className="font-mono text-xs text-muted-foreground">PDF · 1 PAGE</span></div>
             <h3 className="font-display text-3xl font-bold">Srikanth S</h3>
-            <p className="mt-2 text-muted-foreground">Resume Letter · 2026</p>
+            <p className="mt-2 text-muted-foreground">Updated resume · 2026</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild className="rounded-sm shadow-neon-cyan"><a href={resumeAsset.url} target="_blank" rel="noreferrer">View resume <ExternalLink /></a></Button>
               <Button asChild variant="outline" className="rounded-sm border-primary/40 bg-transparent"><a href={resumeAsset.url} download="Srikanth_S_Resume.pdf">Download <Download /></a></Button>
@@ -341,12 +378,12 @@ function Portfolio() {
           </div>
           <div className="grid gap-7 p-7 sm:grid-cols-2 sm:p-9">
             <ResumeSummary icon={<GraduationCap />} label="Education" lines={["B.E. Computer Science and Engineering", "GCT, Coimbatore · CGPA 7.76", "Expected graduation · 2029"]} />
-            <ResumeSummary icon={<Code2 />} label="Skills" lines={["C · C++ · Java · Python", "Data Structures & Algorithms", "Git · Canva · MIT App Inventor"]} />
+            <ResumeSummary icon={<Code2 />} label="Skills" lines={["C · C++ · Java · Python", "HTML · CSS · JavaScript", "Power BI · Power Query · DAX", "Git · Canva · MIT App Inventor"]} />
           </div>
         </article>
       </Section>
 
-      <Section id="contact" number="08" eyebrow="Let’s connect" title="Reach out">
+      <Section id="contact" number="09" eyebrow="Let’s connect" title="Reach out">
         <p className="-mt-8 mb-9 max-w-2xl leading-7 text-muted-foreground">I’m currently looking for internship opportunities and meaningful projects. Choose a channel and let’s start a conversation.</p>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <ContactCard href="mailto:srikxsrii1708@gmail.com" icon={<Mail />} label="Email" value="srikxsrii1708@gmail.com" />
@@ -400,8 +437,8 @@ function TimelineItem({ icon, code, title, detail }: { icon: ReactNode; code: st
   return <article className="timeline-item group grid gap-4 pb-8 pl-14 sm:grid-cols-[120px_1fr] sm:pl-16" tabIndex={0}><span className="timeline-icon grid size-10 place-items-center border border-primary/50 bg-background text-primary [&_svg]:size-5">{icon}</span><p className="pt-3 font-mono text-xs text-primary">{code}</p><div className="glass-card p-6 sm:col-start-2"><h3 className="font-display text-xl font-bold">{title}</h3><p className="mt-3 leading-7 text-muted-foreground">{detail}</p></div></article>;
 }
 
-function Certificate({ image, title }: { image: string; title: string }) {
-  return <a href={image} target="_blank" rel="noreferrer" className="certificate-card group block overflow-hidden border border-border bg-card/65"><div className="aspect-[1.42/1] overflow-hidden bg-muted"><img src={image} alt={`${title} certificate`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" loading="lazy" /></div><div className="flex items-center justify-between gap-4 p-5"><div><p className="font-mono text-[10px] uppercase text-primary">SoloLearn</p><h3 className="mt-1 font-display text-lg font-bold">{title}</h3></div><ExternalLink className="size-5 shrink-0 translate-y-1 text-primary opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100" /></div></a>;
+function Certificate({ image, title, organization, detail }: { image: string; title: string; organization: string; detail?: string }) {
+  return <a href={image} target="_blank" rel="noreferrer" aria-label={`View certificate: ${title}`} className="certificate-card group block overflow-hidden border border-border bg-card/65"><div className="aspect-[1.42/1] overflow-hidden bg-muted"><img src={image} alt={`${title} certificate`} className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]" loading="lazy" /></div><div className="flex items-center justify-between gap-4 p-5"><div><p className="font-mono text-[10px] uppercase text-primary">{organization}</p><h3 className="mt-1 font-display text-lg font-bold">{title}</h3>{detail && <p className="mt-2 text-xs leading-5 text-muted-foreground">{detail}</p>}<span className="mt-3 inline-flex items-center gap-2 font-mono text-[10px] uppercase text-primary">View certificate <ExternalLink className="size-3" /></span></div></div></a>;
 }
 
 function ResumeSummary({ icon, label, lines }: { icon: ReactNode; label: string; lines: string[] }) {
@@ -414,5 +451,7 @@ function ContactCard({ href, icon, label, value, external = false }: { href: str
 
 function ProjectDialog({ project, onOpenChange }: { project: ProjectKey; onOpenChange: (open: boolean) => void }) {
   const pong = project === "pong";
-  return <Dialog open={project !== null} onOpenChange={onOpenChange}><DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto border-primary/30 bg-background/95 p-0 backdrop-blur-xl sm:rounded-sm"><DialogHeader className="sr-only"><DialogTitle>{pong ? "Pong Game 2" : "Quiz Master"}</DialogTitle><DialogDescription>Project details</DialogDescription></DialogHeader>{pong ? <><div className="grid gap-1 bg-border sm:grid-cols-2"><img src={pongWinAsset.url} alt="Pong win screen" className="aspect-video h-full w-full object-cover" /><img src={pongPlayAsset.url} alt="Pong gameplay screen" className="aspect-video h-full w-full object-cover" /></div><div className="p-6 sm:p-8"><p className="font-mono text-xs uppercase text-primary">MIT App Inventor · Android</p><h3 className="mt-3 font-display text-3xl font-bold">Pong Game 2</h3><p className="mt-4 max-w-3xl leading-7 text-muted-foreground">Developed an Android-based Pong game featuring interactive gameplay, score tracking, and user-friendly controls. Applied event-driven programming concepts and mobile UI design principles to create an engaging gaming experience.</p><div className="mt-6 grid gap-3 sm:grid-cols-2">{["Interactive gameplay", "Score tracking", "Mobile-friendly controls", "Android application"].map((item) => <div key={item} className="flex items-center gap-3 border border-border bg-card p-3 text-sm"><Check className="size-4 text-primary" />{item}</div>)}</div><Button disabled className="mt-7 rounded-sm">Download APK (Coming Soon)</Button></div></> : <div className="p-7 sm:p-10"><div className="mb-8 flex flex-col gap-7 sm:flex-row sm:items-center"><SrsCover className="w-32 shrink-0 -rotate-2 sm:w-40" /><div><p className="font-mono text-xs uppercase text-accent">Software Engineering · C</p><h3 className="mt-3 font-display text-3xl font-bold">Quiz Master</h3><p className="mt-2 font-mono text-[10px] uppercase text-muted-foreground">Team · Karthick K · Srikanth S · Vasanth P</p></div></div><p className="leading-7 text-muted-foreground">Co-developed Quiz Master, a C-language console quiz game with automatic scoring, and authored its complete Software Requirements Specification — defining the built-in question bank, answer validation, scoring rules, and result summaries.</p><div className="mt-7 grid gap-3 sm:grid-cols-2">{["Built-in question bank", "Answer input & validation", "Automatic scoring", "Result summary & replay"].map((item) => <div key={item} className="flex items-center gap-3 border border-border bg-card p-3 text-sm"><Check className="size-4 text-accent" />{item}</div>)}</div><div className="mt-7 flex flex-wrap gap-2">{["C Programming", "SRS Documentation", "Requirements Engineering", "Team Collaboration"].map((item) => <Tag key={item}>{item}</Tag>)}</div><div className="mt-8 flex flex-wrap gap-3"><Button asChild className="rounded-sm shadow-neon-cyan"><a href={quizSrsAsset.url} target="_blank" rel="noreferrer">View SRS <ExternalLink /></a></Button><Button asChild variant="outline" className="rounded-sm border-primary/40 bg-transparent"><a href={quizSrsAsset.url} download="Quiz_Master_SRS.pdf">Download SRS <Download /></a></Button></div></div>}</DialogContent></Dialog>;
+  const quiz = project === "quiz";
+  const title = pong ? "Pong Game 2" : quiz ? "Quiz Master" : "Online Retail Data Analysis";
+  return <Dialog open={project !== null} onOpenChange={onOpenChange}><DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto border-primary/30 bg-background/95 p-0 backdrop-blur-xl sm:rounded-sm"><DialogHeader className="sr-only"><DialogTitle>{title}</DialogTitle><DialogDescription>Project details</DialogDescription></DialogHeader>{pong ? <><div className="grid gap-1 bg-border sm:grid-cols-2"><img src={pongWinAsset.url} alt="Pong win screen" className="aspect-video h-full w-full object-cover" /><img src={pongPlayAsset.url} alt="Pong gameplay screen" className="aspect-video h-full w-full object-cover" /></div><div className="p-6 sm:p-8"><p className="font-mono text-xs uppercase text-primary">MIT App Inventor · Android</p><h3 className="mt-3 font-display text-3xl font-bold">Pong Game 2</h3><p className="mt-4 max-w-3xl leading-7 text-muted-foreground">Developed an Android-based Pong game featuring interactive gameplay, score tracking, and user-friendly controls. Applied event-driven programming concepts and mobile UI design principles to create an engaging gaming experience.</p><div className="mt-6 grid gap-3 sm:grid-cols-2">{["Interactive gameplay", "Score tracking", "Mobile-friendly controls", "Android application"].map((item) => <div key={item} className="flex items-center gap-3 border border-border bg-card p-3 text-sm"><Check className="size-4 text-primary" />{item}</div>)}</div><Button disabled className="mt-7 rounded-sm">Download APK (Coming Soon)</Button></div></> : quiz ? <div className="p-7 sm:p-10"><div className="mb-8 flex flex-col gap-7 sm:flex-row sm:items-center"><SrsCover className="w-32 shrink-0 -rotate-2 sm:w-40" /><div><p className="font-mono text-xs uppercase text-accent">Software Engineering · C</p><h3 className="mt-3 font-display text-3xl font-bold">Quiz Master</h3><p className="mt-2 font-mono text-[10px] uppercase text-muted-foreground">Team · Karthick K · Srikanth S · Vasanth P</p></div></div><p className="leading-7 text-muted-foreground">Co-developed Quiz Master, a C-language console quiz game with automatic scoring, and authored its complete Software Requirements Specification — defining the built-in question bank, answer validation, scoring rules, and result summaries.</p><div className="mt-7 grid gap-3 sm:grid-cols-2">{["Built-in question bank", "Answer input & validation", "Automatic scoring", "Result summary & replay"].map((item) => <div key={item} className="flex items-center gap-3 border border-border bg-card p-3 text-sm"><Check className="size-4 text-accent" />{item}</div>)}</div><div className="mt-7 flex flex-wrap gap-2">{["C Programming", "SRS Documentation", "Requirements Engineering", "Team Collaboration"].map((item) => <Tag key={item}>{item}</Tag>)}</div><div className="mt-8 flex flex-wrap gap-3"><Button asChild className="rounded-sm shadow-neon-cyan"><a href={quizSrsAsset.url} target="_blank" rel="noreferrer">View SRS <ExternalLink /></a></Button><Button asChild variant="outline" className="rounded-sm border-primary/40 bg-transparent"><a href={quizSrsAsset.url} download="Quiz_Master_SRS.pdf">Download SRS <Download /></a></Button></div></div> : <div className="p-7 sm:p-10"><div className="flex items-center gap-4"><span className="grid size-12 shrink-0 place-items-center border border-primary/50 bg-primary/10 text-primary"><BarChart3 /></span><div><p className="font-mono text-xs uppercase text-primary">Microsoft Power BI · Power Query · DAX</p><h3 className="mt-2 font-display text-2xl font-bold sm:text-3xl">Online Retail Data Analysis</h3></div></div><p className="mt-6 leading-7 text-muted-foreground">Analysed an online retail dataset using Microsoft Power BI to identify business insights and sales trends.</p><h4 className="mt-7 font-mono text-xs uppercase text-primary">Analysis performed</h4><ul className="mt-3 grid gap-3 sm:grid-cols-2">{["Cleaned and transformed data using Power Query", "Analysed monthly revenue trends for 2011", "Identified the top 10 countries by revenue and quantity sold", "Analysed the top 10 customers by revenue", "Created a global demand distribution map"].map((item) => <li key={item} className="flex items-start gap-3 border border-border bg-card p-3 text-sm leading-6"><Check className="mt-1 size-4 shrink-0 text-primary" />{item}</li>)}</ul><div className="mt-7 border border-border bg-secondary/25 p-5"><p className="font-mono text-xs uppercase text-primary">Dashboard screenshots</p><p className="mt-2 text-sm text-muted-foreground">No dashboard screenshots were included with the uploaded project files.</p></div><Button asChild className="mt-7 rounded-sm shadow-neon-cyan"><a href={retailPbixAsset.url} download="Online_Retail_Analysis_PB.pbix">Download PBIX <Download /></a></Button></div>}</DialogContent></Dialog>;
 }

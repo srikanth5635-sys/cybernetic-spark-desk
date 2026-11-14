@@ -1,4 +1,4 @@
-- [ ] Update portfolio introduction, skill list, and resume links using the supplied resume.
-- [ ] Add the Power BI project, real PBIX download, and Forage simulation experience.
-- [ ] Add three supplied certificates with working previews; preserve existing certificates.
+- [x] Update portfolio introduction, skill list, and resume links using the supplied resume.
+- [x] Add the Power BI project, real PBIX download, and Forage simulation experience.
+- [x] Add three supplied certificates with working previews; preserve existing certificates.
 - [ ] Verify build and desktop/mobile interactions; commit the changes.
