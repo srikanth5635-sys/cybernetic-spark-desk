@@ -23,6 +23,7 @@ import {
   Sparkles,
   Trophy,
   UserRound,
+  Wrench,
   X,
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
@@ -50,16 +51,16 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Srikanth S — UI/UX Designer & CSE Student" },
+      { title: "Srikanth S — UX/UI Designer & Aspiring Software Engineer" },
       {
         name: "description",
         content:
-          "Portfolio of Srikanth S, a UI/UX designer, Computer Science student, and aspiring software engineer.",
+          "Portfolio of Srikanth S, an evolving UX/UI designer and aspiring software engineer exploring AI, machine learning, and data analytics.",
       },
-      { property: "og:title", content: "Srikanth S — UI/UX Designer & CSE Student" },
+      { property: "og:title", content: "Srikanth S — UX/UI Designer & Aspiring Software Engineer" },
       {
         property: "og:description",
-        content: "Explore Srikanth’s design work, software projects, skills, achievements, and experience.",
+        content: "Explore Srikanth’s design work, software projects, analytics skills, certificates, and experience.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -265,7 +266,7 @@ function Portfolio() {
                   <p className="font-mono text-[10px] uppercase text-muted-foreground">{skill.group}</p>
                   <h3 className="mt-2 font-display text-lg font-bold">{skill.name}</h3>
                 </div>
-                <Code2 className="size-5 text-primary transition-transform group-hover:scale-110" />
+                {skill.group === "Data analytics" ? <BarChart3 className="size-5 text-primary transition-transform group-hover:scale-110" /> : skill.group === "Web technologies" ? <MonitorSmartphone className="size-5 text-primary transition-transform group-hover:scale-110" /> : skill.group === "Tool" ? <Wrench className="size-5 text-primary transition-transform group-hover:scale-110" /> : <Code2 className="size-5 text-primary transition-transform group-hover:scale-110" />}
               </div>
             </article>
           ))}
@@ -301,16 +302,13 @@ function Portfolio() {
             </div>
           </button>
           <button onClick={() => setProject("retail")} className="project-card group overflow-hidden text-left">
-            <div className="relative grid aspect-[16/8] content-center gap-3 overflow-hidden bg-secondary/35 p-5 sm:grid-cols-3 sm:p-7">
-              <div className="absolute inset-0 opacity-30 hero-grid" />
-              {["Monthly revenue", "Country analysis", "Customer insights"].map((label) => (
-                <div key={label} className="relative flex min-h-24 flex-col justify-between border border-primary/25 bg-background/70 p-3">
-                  <BarChart3 className="size-5 text-primary" />
-                  <span className="font-mono text-[9px] uppercase text-muted-foreground sm:text-[10px]">{label}</span>
-                </div>
-              ))}
+            <div className="relative grid aspect-[16/8] place-items-center overflow-hidden bg-secondary/25 p-5">
+              <div className="absolute inset-4 border border-dashed border-primary/25" />
+              <div className="relative flex flex-col items-center gap-3 text-center">
+                <BarChart3 className="size-8 text-primary/70" />
+                <span className="font-mono text-[10px] uppercase text-muted-foreground">Dashboard screenshots not provided</span>
+              </div>
               <span className="absolute right-4 top-4 grid size-9 place-items-center bg-background/80 text-primary backdrop-blur"><ArrowUpRight /></span>
-              <span className="absolute bottom-2 left-5 font-mono text-[9px] uppercase text-muted-foreground sm:left-7">Dashboard preview area</span>
             </div>
             <div className="p-6">
               <p className="font-mono text-xs uppercase text-primary">03 · Microsoft Power BI</p>
@@ -373,7 +371,7 @@ function Portfolio() {
             <p className="mt-2 text-muted-foreground">Updated resume · 2026</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild className="rounded-sm shadow-neon-cyan"><a href={resumeAsset.url} target="_blank" rel="noreferrer">View resume <ExternalLink /></a></Button>
-              <Button asChild variant="outline" className="rounded-sm border-primary/40 bg-transparent"><a href={resumeAsset.url} download="Srikanth_S_Resume.pdf">Download <Download /></a></Button>
+              <Button asChild variant="outline" className="rounded-sm border-primary/40 bg-transparent"><a href={resumeAsset.url} download="Srikanth_S_Updated_Resume.pdf">Download <Download /></a></Button>
             </div>
           </div>
           <div className="grid gap-7 p-7 sm:grid-cols-2 sm:p-9">
